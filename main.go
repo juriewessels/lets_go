@@ -13,10 +13,8 @@ func Home(w http.ResponseWriter, r *http.Request) {
   // the w.Write() method to write a "Not Found" response body. Importantly, we
   // then return from the function so that the subsequent code is not executed.
   if r.URL.Path != "/" {
-    // call WriteHeader explicitly, else first call to Write will return 200
-    // WriteHeader can only be set once per request
-    w.WriteHeader(404)
-    w.Write([]byte("404 Not Found"))
+    // Use the http.NotFound() function to send a 404 Not Found response.
+    http.NotFound(w, r)
     return
   }
 
